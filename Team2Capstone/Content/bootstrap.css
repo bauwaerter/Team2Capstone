@@ -783,6 +783,12 @@ pre code {
   clear: both;
 }
 
+.container #home {
+    background-image: url("");
+    background-position: center;
+    background-size: cover;
+}
+
 .row {
   margin-right: -15px;
   margin-left: -15px;
