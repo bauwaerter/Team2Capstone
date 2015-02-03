@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Team2Capstone.Models;
+@model List<Event>
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -8,32 +10,24 @@
     <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
 
 <div id="calendar"></div>
 
 <script>
+    console.log('@Model')
     $('#calendar').fullCalendar({
-
+        eventClick: function (calEvent, jsEvent, view) {
+            alert('event id: ' + calEvent.id);
+            alert('Event: ' + calEvent.title);
+            alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+            alert('View: ' + view.name);
+            window.location.href = "@Url.Action("Edit", "Event")?id=" + calEvent.id;
+        },
+        events: [{
+            id: '@Model.FirstOrDefault().Id',
+            title: '@Model.FirstOrDefault().Title',
+            start: '@Model.FirstOrDefault().StartDate',
+            end: '@Model.FirstOrDefault().EndDate'
+            }]
     });
 </script>

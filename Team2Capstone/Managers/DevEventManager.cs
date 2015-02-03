@@ -18,10 +18,16 @@ namespace Team2Capstone.Managers
             return _Map(_respository.GetAll<Data.Event>());
         }
 
+        public Models.Event GetEventById(int eventId)
+        {
+            return _Map(_respository.GetAll<Data.Event>(x => x.ID == eventId).FirstOrDefault());
+        }
+
         private List<Models.Event> _Map(IEnumerable<Data.Event> source)
         {
             var model = source.Select(x => new Models.Event
             {
+                Id = x.ID,
                 Title = x.Title,
                 StartDate = x.StartDate,
                 EndDate = x.EndDate,
@@ -34,6 +40,26 @@ namespace Team2Capstone.Managers
             });
 
             return model.ToList();
+        }
+
+        private Models.Event _Map(Data.Event source)
+        {            
+            var model = new Models.Event
+            {
+                Id = source.ID,
+                Title = source.Title,
+                StartDate = source.StartDate,
+                EndDate = source.EndDate,
+                Type_ID = source.Type_ID,
+                Description = source.Description,
+                Owner_ID = source.Owner_ID,
+                Logo_Path = source.Logo_Path,
+                Location = source.Location,
+                Status = source.Status
+
+            };
+            
+            return model;
         }
     }
 }

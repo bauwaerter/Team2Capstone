@@ -10,17 +10,13 @@ namespace Team2Capstone.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly DevEventManager _devEventManager;
-
-        public HomeController(DevEventManager devEventManager)
-        {
-            _devEventManager = devEventManager;
-        }
         public ActionResult Index()
         {
 
+            DevEventManager _devEventManager = new DevEventManager();
             var list = _devEventManager.GetEvents();
-            return View();
+            
+            return View(list);
         }
 
         public ActionResult About()
