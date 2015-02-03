@@ -18,7 +18,7 @@ namespace Team2Capstone.Controllers
         public ActionResult Edit(int id)
         {
             var _devEventManager = new DevEventManager();
-            var ev = _devEventManager.GetEventById(x.Id == id);
+            //var ev = _devEventManager.GetEventById(x.Id == id);
             return View();
         }
     }
