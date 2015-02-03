@@ -23,6 +23,11 @@ namespace Team2Capstone.Managers
             return _Map(_respository.GetAll<Data.Event>(x => x.ID == eventId).FirstOrDefault());
         }
 
+        public Models.Event GetEventDetails(int eventId)
+        {
+            return _Map(_respository.GetAll<Data.Event>(x => x.ID == eventId).FirstOrDefault());
+        }
+
         private List<Models.Event> _Map(IEnumerable<Data.Event> source)
         {
             var model = source.Select(x => new Models.Event
