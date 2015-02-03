@@ -26,6 +26,8 @@ namespace Team2Capstone.Core
         //{
 
         //}
+
+        // get a entity (expression) id == eventid
         public TEntity Get<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : class
         {
             return _dbContext.Set<TEntity>().Where(predicate).FirstOrDefault();
@@ -35,12 +37,12 @@ namespace Team2Capstone.Core
         {
             return await _dbContext.Set<TEntity>().Where(predicate).FirstOrDefaultAsync();
         }
-
+        // get all rows up <TEntity> table
         public IEnumerable<TEntity> GetAll<TEntity>() where TEntity : class
         {
             return _dbContext.Set<TEntity>();
         }
-
+        // get all rows up <TEntity> table where (userType == 'admin')
         public IEnumerable<TEntity> GetAll<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : class
         {
             return _dbContext.Set<TEntity>().Where(predicate);
