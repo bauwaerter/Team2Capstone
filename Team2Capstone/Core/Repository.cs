@@ -5,7 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace MyFirstWebApp.Core
+namespace Team2Capstone.Core
 {
     public class Repository : IRepository
     {
