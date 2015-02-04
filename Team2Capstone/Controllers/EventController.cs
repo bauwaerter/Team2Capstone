@@ -15,6 +15,8 @@ namespace Team2Capstone.Controllers
             return View();
         }
 
+        
+
         public ActionResult Create()
         {
             return View(new Models.Event());
