@@ -28,6 +28,11 @@ namespace Team2Capstone.Managers
             _respository.Update<Data.Registration>(_Map(registration));
         }
 
+        public void AddRegistration(Models.Registration registration)
+        {
+            _respository.Add<Data.Registration>(_Map(registration));
+        }
+
         private List<Models.Registration> _Map(IEnumerable<Data.Registration> source)
         {
             var model = source.Select(x => new Models.Registration

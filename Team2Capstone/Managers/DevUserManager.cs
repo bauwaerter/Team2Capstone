@@ -23,6 +23,16 @@ namespace Team2Capstone.Managers
             return _Map(_respository.GetAll<Data.User>(x => x.ID == userId).FirstOrDefault());
         }
 
+        public void UpdateUser(Models.User user)
+        {
+            _respository.Update<Data.User>(_Map(user));
+        }
+
+        public void AddUser(Models.User user)
+        {
+            _respository.Add<Data.User>(_Map(user));
+        }
+
         private List<Models.User> _Map(IEnumerable<Data.User> source)
         {
             var model = source.Select(x => new Models.User
@@ -70,6 +80,37 @@ namespace Team2Capstone.Managers
             };
 
             return model;
+        }
+
+        private Data.User _Map(Models.User user)
+        {
+            var data = new Data.User
+            {
+                ID = user.ID,
+                Username = user.UserName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Address1 = user.Address1,
+                Address2 = user.Address2,
+                City = user.City,
+                State = user.State,
+                PhoneHome = user.PhoneHome,
+                PhoneCell = user.PhoneCell,
+                PhoneOffice = user.PhoneOffice,
+                CompanyName = user.CompanyName,
+                BranchLocation = user.BranchLocation,
+                Food_ID = user.Food_ID,
+                AdditionalInfo = GetBytes(user.AdditionalInfo)
+            };
+
+            return data;
+        }
+
+        static byte[] GetBytes(string str)
+        {
+            byte[] bytes = new byte[str.Length * sizeof(char)];
+            System.Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, bytes.Length);
+            return bytes;
         }
     }
 }
