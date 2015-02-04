@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Team2Capstone.Models;
 using Team2Capstone.Managers;
+using Microsoft.AspNet.Identity;
 
 namespace Team2Capstone.Controllers
 {
@@ -15,6 +16,7 @@ namespace Team2Capstone.Controllers
 
             DevEventManager _devEventManager = new DevEventManager();
             var list = _devEventManager.GetEvents();
+            
             
             return View(list);
         }

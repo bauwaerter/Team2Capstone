@@ -4,14 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1bdac91832a94e08a4243f59a9d3bc2a" Name="Diagram1" ZoomLevel="96">
-        <EntityTypeShape EntityType="CapstoneModel.Category" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CapstoneModel.Event" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CapstoneModel.Food" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+      <Diagram DiagramId="a27b57957bdc45cf897f2dec6d6a0d4e" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="CapstoneModel.Event" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CapstoneModel.Food" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CapstoneModel.Registration" Width="1.5" PointX="7.5" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CapstoneModel.Type" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CapstoneModel.User" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="CapstoneModel.FK_Event_Category" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CapstoneModel.Type" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CapstoneModel.User" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
         <AssociationConnector Association="CapstoneModel.FK_Event_Type" ManuallyRouted="false" />
         <AssociationConnector Association="CapstoneModel.FK_Event_User" ManuallyRouted="false" />
         <AssociationConnector Association="CapstoneModel.FK_Registrations_Event" ManuallyRouted="false" />

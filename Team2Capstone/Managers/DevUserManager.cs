@@ -10,7 +10,7 @@ namespace Team2Capstone.Managers
 {
     public class DevUserManager
     {
-        private static CapstoneEntities1 _entities = new CapstoneEntities1();
+        private static CapstoneEntities2 _entities = new CapstoneEntities2();
         private Repository _respository = new Repository(_entities);
 
         public List<Models.User> GetUsers()
@@ -18,9 +18,9 @@ namespace Team2Capstone.Managers
             return _Map(_respository.GetAll<Data.User>());
         }
 
-        public Models.User GetUserById(int userId)
+        public Models.User GetUserById(string userId)
         {
-            return _Map(_respository.GetAll<Data.User>(x => x.ID == userId).FirstOrDefault());
+            return _Map(_respository.GetAll<Data.User>(x => x.User_ID == userId).FirstOrDefault());
         }
 
         public void UpdateUser(Models.User user)
@@ -38,7 +38,9 @@ namespace Team2Capstone.Managers
             var model = source.Select(x => new Models.User
             {
                 ID = x.ID,
+                User_ID = x.User_ID,
                 UserName = x.Username,
+                Password = x.Password,
                 FirstName = x.FirstName,
                 LastName = x.LastName,
                 Address1 = x.Address1,
@@ -51,7 +53,7 @@ namespace Team2Capstone.Managers
                 CompanyName = x.CompanyName,
                 BranchLocation = x.BranchLocation,
                 Food_ID = x.Food_ID,
-                AdditionalInfo = x.AdditionalInfo.ToString()
+                AdditionalInfo = x.AdditionalInfo
             });
 
             return model.ToList();
@@ -62,7 +64,9 @@ namespace Team2Capstone.Managers
             var model = new Models.User
             {
                 ID = source.ID,
+                User_ID = source.User_ID,
                 UserName = source.Username,
+                Password = source.Password,
                 FirstName = source.FirstName,
                 LastName = source.LastName,
                 Address1 = source.Address1,
@@ -75,7 +79,7 @@ namespace Team2Capstone.Managers
                 CompanyName = source.CompanyName,
                 BranchLocation = source.BranchLocation,
                 Food_ID = source.Food_ID,
-                AdditionalInfo = source.AdditionalInfo.ToString()
+                AdditionalInfo = source.AdditionalInfo
 
             };
 
@@ -87,7 +91,9 @@ namespace Team2Capstone.Managers
             var data = new Data.User
             {
                 ID = user.ID,
+                User_ID = user.User_ID,
                 Username = user.UserName,
+                Password = user.Password,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Address1 = user.Address1,
@@ -100,17 +106,12 @@ namespace Team2Capstone.Managers
                 CompanyName = user.CompanyName,
                 BranchLocation = user.BranchLocation,
                 Food_ID = user.Food_ID,
-                AdditionalInfo = GetBytes(user.AdditionalInfo)
+                AdditionalInfo = user.AdditionalInfo
             };
 
             return data;
         }
 
-        static byte[] GetBytes(string str)
-        {
-            byte[] bytes = new byte[str.Length * sizeof(char)];
-            System.Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, bytes.Length);
-            return bytes;
-        }
+        
     }
 }

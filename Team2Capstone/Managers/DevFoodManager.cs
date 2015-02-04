@@ -10,7 +10,7 @@ namespace Team2Capstone.Managers
 {
     public class DevFoodManager
     {
-        private static CapstoneEntities1 _entities = new CapstoneEntities1();
+        private static CapstoneEntities2 _entities = new CapstoneEntities2();
         private Repository _respository = new Repository(_entities);
 
         public List<Models.Food> GetFoods()

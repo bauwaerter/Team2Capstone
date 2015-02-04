@@ -187,9 +187,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CapstoneEDM.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Data\Category.cs">
-      <DependentUpon>CapstoneEDM.tt</DependentUpon>
-    </Compile>
     <Compile Include="Data\Event.cs">
       <DependentUpon>CapstoneEDM.tt</DependentUpon>
     </Compile>
@@ -233,6 +230,7 @@
     <Content Include="bin\EntityFramework.dll" />
     <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
     <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Team2Capstone.dll" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fullcalendar.css" />

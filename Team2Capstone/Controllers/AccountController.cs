@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Team2Capstone.Models;
+using Team2Capstone.Managers;
 
 namespace Team2Capstone.Controllers
 {
@@ -17,12 +18,13 @@ namespace Team2Capstone.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        //private UserManager<User> UserManager;
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -153,8 +155,24 @@ namespace Team2Capstone.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                var userManager = new DevUserManager();
+                var new_user = new Models.User
+                {
+                    User_ID = user.Id,
+                    UserName = model.Email,
+                    Password = user.PasswordHash,
+                    FirstName = model.User.FirstName,
+                    LastName = model.User.LastName,
+                    Address1 = model.User.Address1,
+                    Address2 = model.User.Address2,
+                    City = model.User.City,
+                    State = model.User.State
+
+                };
+                
                 if (result.Succeeded)
                 {
+                    userManager.AddUser(new_user);
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
