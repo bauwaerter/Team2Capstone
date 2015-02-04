@@ -33,7 +33,7 @@
                         <div class="checkbox">
                             @Html.CheckBoxFor(m => m.RememberMe)
                             @Html.LabelFor(m => m.RememberMe)
-                            <span class="forgot-btn">
+                            <span class="forgot-btn" style="padding: .5em">
                             @Html.ActionLink(" Forgot your password?", "ForgotPassword")
                             </span>
                         </div>
@@ -42,7 +42,23 @@
                 <div class="form-group">
                     <div class="col-md-offset-3 col-md-10">
                         <input style="margin: .5em;" type="submit" value="Log in" class="btn btn-default" />
-                        <button style="margin: .5em;"type="button" value="" class="btn btn-default">@Html.ActionLink("Register", "Register")</button>
+                        
+                        <!-- Button trigger modal -->
+                        <button style="margin: .5em;" type="button" data-toggle="modal" data-target="#registration-modal" class="btn btn-default">Register</button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="registration-modal" tabindex="-1" role="dialog" aria-labelledby="registration-modal" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        @Html.Partial("Register")
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             }
