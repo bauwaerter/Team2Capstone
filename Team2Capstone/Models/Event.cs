@@ -17,5 +17,7 @@ namespace Team2Capstone.Models
         public string Logo_Path { get; set;}
         public string Location { get; set; }
         public string Status { get; set; }
+
+        
     }
 }

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\brholt\Documents\Capstone Project\Team2Capstone\Data\CapstoneEDM.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\bauwaert\Desktop\Capstone\Team2Capstone\Team2Capstone\Data\CapstoneEDM.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
