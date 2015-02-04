@@ -1,60 +1,60 @@
 ﻿@model Team2Capstone.Models.Event
 
+
 @using (Html.BeginForm(null, "Event", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
-    <table style="width:100%;">
-        <tr>
-            <td>Event Name</td>
-            @Html.TextBoxFor(model => model.Title)
-            @*<input id="Title" name="Title" type="text" />*@
-        </tr>
-        <tr>
-            <td>Event Date</td>
-            @Html.TextAreaFor(model=>model.StartDate)
-        </tr>
-        <tr>
-            <td>Start Time</td>
-            <td>Make datepicker here</td>
-            <td>End Date</td>
-            <td>Make datepicker heres</td>
-        </tr>
-        <tr>
-            <td>Location</td>
-            <td><input id="Location" type="text"></td>
-        </tr>
-        <tr>
-            <td>Type</td>
-            <td>
-                <select id="Select1">
-                    <option>options will go here</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Description</td>
-        </tr>
-        <tr>
-            <td>
-                <textarea id="DescriptionArea" rows="5" cols="50"></textarea>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Additional info
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <textarea id="TextArea1" rows="2" cols="20"></textarea>
-            </td>
-        </tr>
-        <tr>
-            <td>Logo Graphic</td>
-            <td>//figure out upload file here</td>
-        </tr>
-        <tr>
-            <td><input id="SubmitNewEvent" type="submit" value="Create Event" /></td>
-            <td><input id="BackNewEvent" type="submit" value="Back" /></td>
-        </tr>
-    </table>
+    <div class="row">
+        <div class="col-md-6">Event Name</div>
+        <div class="col-md-6">@Html.TextBoxFor(model => model.Title)</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">Event Date</div>
+        <div class="col-md-6">@Html.TextBoxFor(model=>model.StartDate)</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">Start Time</div>
+        <div class="col-md-6">
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                    Time Start
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">End Time</div>
+        <div class="col-md-6"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">Location</div>
+        <div class="col-md-6">@Html.TextAreaFor(model => model.Location)</div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">Type</div>
+        <div class="col-md-6">@Html.TextBoxFor(model => model.Type_ID)</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">Description</div>
+        <div class="col-md-6">@Html.TextAreaFor(model => model.Description)</div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">Logo Graphic</div>
+        <div class="col-md-6">@Html.TextBoxFor(model => model.Logo_Path, new { type = "file" })</div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-1"><input id="SubmitNewEvent" type="submit" value="Create Event" /></div>
+        <div class="col-md-1"><input id = "Back" type = "submit" value = "Back"/></div>
+        </div>
 }
