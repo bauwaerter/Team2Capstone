@@ -25,11 +25,11 @@ namespace Team2Capstone.Data
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Event> Events { get; set; }
-        public virtual DbSet<Food> Foods { get; set; }
-        public virtual DbSet<Registration> Registrations { get; set; }
-        public virtual DbSet<Type> Types { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Event> Events { get; set; }
+        public DbSet<Food> Foods { get; set; }
+        public DbSet<Registration> Registrations { get; set; }
+        public DbSet<Type> Types { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

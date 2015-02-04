@@ -70,7 +70,7 @@
           <Property Name="CompanyName" Type="varchar" MaxLength="50" />
           <Property Name="BranchLocation" Type="varchar" MaxLength="50" />
           <Property Name="Food_ID" Type="int" />
-          <Property Name="AdditionalInfo" Type="varbinary" MaxLength="255" />
+          <Property Name="AdditionalInfo" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK_Event_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
@@ -254,7 +254,7 @@
           <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="BranchLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Food_ID" Type="Int32" />
-          <Property Name="AdditionalInfo" Type="Binary" MaxLength="255" FixedLength="false" />
+          <Property Name="AdditionalInfo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Events" Relationship="Self.FK_Event_User" FromRole="User" ToRole="Event" />
           <NavigationProperty Name="Food" Relationship="Self.FK_User_Food" FromRole="User" ToRole="Food" />
           <NavigationProperty Name="Registrations" Relationship="Self.FK_Registrations_User" FromRole="User" ToRole="Registrations" />
