@@ -19,6 +19,8 @@ namespace Team2Capstone.Controllers
             return View(list);
         }
 
+       
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
