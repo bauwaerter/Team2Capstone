@@ -1,22 +1,19 @@
-﻿@using (Html.BeginForm("Create", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+﻿@model Team2Capstone.Models.Event
+
+@using (Html.BeginForm(null, "Event", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     <table style="width:100%;">
         <tr>
             <td>Event Name</td>
-            <td><input id="EventName" type="text" /></td>
+            @Html.TextBoxFor(model => model.Title)
+            @*<input id="Title" name="Title" type="text" />*@
         </tr>
         <tr>
             <td>Event Date</td>
-            <td>
-                <select id="Select1">
-                    <option>test</option>
-
-                </select>
-            </td>
-
+            @Html.TextAreaFor(model=>model.StartDate)
         </tr>
         <tr>
-            <td>Start Date</td>
+            <td>Start Time</td>
             <td>Make datepicker here</td>
             <td>End Date</td>
             <td>Make datepicker heres</td>
