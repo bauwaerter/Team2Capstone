@@ -10,7 +10,7 @@ namespace Team2Capstone.Managers
 {
     public class DevEventManager
     {
-        private static CapstoneEntities1 _entities = new CapstoneEntities1();
+        private static CapstoneEntities2 _entities = new CapstoneEntities2();
         private Repository _respository = new Repository(_entities);
 
         public List<Models.Event> GetEvents()
@@ -21,6 +21,16 @@ namespace Team2Capstone.Managers
         public Models.Event GetEventById(int eventId)
         {
             return _Map(_respository.GetAll<Data.Event>(x => x.ID == eventId).FirstOrDefault());
+        }
+
+        public void UpdateEvent(Models.Event evnt)
+        {
+            _respository.Update<Data.Event>(_Map(evnt));
+        }
+
+        public void AddEvent(Models.Event evnt)
+        {
+            _respository.Add<Data.Event>(_Map(evnt));
         }
 
         private List<Models.Event> _Map(IEnumerable<Data.Event> source)
@@ -60,6 +70,24 @@ namespace Team2Capstone.Managers
             };
             
             return model;
+        }
+
+        private Data.Event _Map(Models.Event evnt){
+
+            var data = new Data.Event{
+                ID = evnt.Id,
+                Title = evnt.Title,
+                StartDate = evnt.StartDate,
+                EndDate = evnt.EndDate,
+                Type_ID = evnt.Type_ID,
+                Description = evnt.Description,
+                Owner_ID = evnt.Owner_ID,
+                Logo_Path = evnt.Logo_Path,
+                Location = evnt.Location,
+                Status = evnt.Status
+            };
+
+            return data;
         }
     }
 }

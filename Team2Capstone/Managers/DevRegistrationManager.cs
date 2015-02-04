@@ -10,7 +10,7 @@ namespace Team2Capstone.Managers
 {
     public class DevRegistrationManager
     {
-        private static CapstoneEntities1 _entities = new CapstoneEntities1();
+        private static CapstoneEntities2 _entities = new CapstoneEntities2();
         private Repository _respository = new Repository(_entities);
 
         public List<Models.Registration> GetRegistrations()
@@ -26,6 +26,11 @@ namespace Team2Capstone.Managers
         public void UpdateRegistration(Models.Registration registration)
         {
             _respository.Update<Data.Registration>(_Map(registration));
+        }
+
+        public void AddRegistration(Models.Registration registration)
+        {
+            _respository.Add<Data.Registration>(_Map(registration));
         }
 
         private List<Models.Registration> _Map(IEnumerable<Data.Registration> source)

@@ -4,14 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CapstoneModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Category">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Category" Type="varchar" MaxLength="50" Nullable="false" />
-        </EntityType>
+    <Schema Namespace="CapstoneModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Event">
           <Key>
             <PropertyRef Name="ID" />
@@ -56,8 +49,9 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="varchar(max)" Nullable="false" />
           <Property Name="Username" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Password" Type="varchar(max)" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Address1" Type="varchar" MaxLength="100" Nullable="false" />
@@ -70,20 +64,8 @@
           <Property Name="CompanyName" Type="varchar" MaxLength="50" />
           <Property Name="BranchLocation" Type="varchar" MaxLength="50" />
           <Property Name="Food_ID" Type="int" />
-          <Property Name="AdditionalInfo" Type="varbinary(max)" />
+          <Property Name="AdditionalInfo" Type="varchar(max)" />
         </EntityType>
-        <Association Name="FK_Event_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="1" />
-          <End Role="Event" Type="Self.Event" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Event">
-              <PropertyRef Name="Category_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Event_Type">
           <End Role="Type" Type="Self.Type" Multiplicity="1" />
           <End Role="Event" Type="Self.Event" Multiplicity="*" />
@@ -145,16 +127,11 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="CapstoneModelStoreContainer">
-          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Food" EntityType="Self.Food" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Registrations" EntityType="Self.Registrations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Event_Category" Association="Self.FK_Event_Category">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="Event" EntitySet="Event" />
-          </AssociationSet>
           <AssociationSet Name="FK_Event_Type" Association="Self.FK_Event_Type">
             <End Role="Type" EntitySet="Type" />
             <End Role="Event" EntitySet="Event" />
@@ -180,14 +157,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CapstoneModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Category">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Category1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Events" Relationship="Self.FK_Event_Category" FromRole="Category" ToRole="Event" />
-        </EntityType>
         <EntityType Name="Event">
           <Key>
             <PropertyRef Name="ID" />
@@ -203,7 +172,6 @@
           <Property Name="Logo_Path" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Category" Relationship="Self.FK_Event_Category" FromRole="Event" ToRole="Category" />
           <NavigationProperty Name="Type" Relationship="Self.FK_Event_Type" FromRole="Event" ToRole="Type" />
           <NavigationProperty Name="User" Relationship="Self.FK_Event_User" FromRole="Event" ToRole="User" />
           <NavigationProperty Name="Registrations" Relationship="Self.FK_Registrations_Event" FromRole="Event" ToRole="Registrations" />
@@ -223,9 +191,9 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="User_ID" Type="Int32" Nullable="false" />
           <Property Name="Event_ID" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Event" Relationship="Self.FK_Registrations_Event" FromRole="Registrations" ToRole="Event" />
           <NavigationProperty Name="User" Relationship="Self.FK_Registrations_User" FromRole="Registrations" ToRole="User" />
-          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Type">
           <Key>
@@ -240,8 +208,9 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Username" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Address1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
@@ -254,23 +223,11 @@
           <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="BranchLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Food_ID" Type="Int32" />
-          <Property Name="AdditionalInfo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Events" Relationship="Self.FK_Event_User" FromRole="User" ToRole="Event" />
           <NavigationProperty Name="Food" Relationship="Self.FK_User_Food" FromRole="User" ToRole="Food" />
           <NavigationProperty Name="Registrations" Relationship="Self.FK_Registrations_User" FromRole="User" ToRole="Registrations" />
+          <Property Name="AdditionalInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
-        <Association Name="FK_Event_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="1" />
-          <End Role="Event" Type="Self.Event" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Event">
-              <PropertyRef Name="Category_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Event_Type">
           <End Role="Type" Type="Self.Type" Multiplicity="1" />
           <End Role="Event" Type="Self.Event" Multiplicity="*" />
@@ -331,17 +288,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CapstoneEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Categories" EntityType="Self.Category" />
+        <EntityContainer Name="CapstoneEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Events" EntityType="Self.Event" />
           <EntitySet Name="Foods" EntityType="Self.Food" />
           <EntitySet Name="Registrations" EntityType="Self.Registration" />
           <EntitySet Name="Types" EntityType="Self.Type" />
           <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK_Event_Category" Association="Self.FK_Event_Category">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="Event" EntitySet="Events" />
-          </AssociationSet>
           <AssociationSet Name="FK_Event_Type" Association="Self.FK_Event_Type">
             <End Role="Type" EntitySet="Types" />
             <End Role="Event" EntitySet="Events" />
@@ -368,15 +320,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CapstoneModelStoreContainer" CdmEntityContainer="CapstoneEntities1">
-          <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="CapstoneModel.Category">
-              <MappingFragment StoreEntitySet="Category">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Category1" ColumnName="Category" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+        <EntityContainerMapping StorageEntityContainer="CapstoneModelStoreContainer" CdmEntityContainer="CapstoneEntities2">
           <EntitySetMapping Name="Events">
             <EntityTypeMapping TypeName="CapstoneModel.Event">
               <MappingFragment StoreEntitySet="Event">
@@ -405,10 +349,10 @@
           <EntitySetMapping Name="Registrations">
             <EntityTypeMapping TypeName="CapstoneModel.Registration">
               <MappingFragment StoreEntitySet="Registrations">
-                <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="Event_ID" ColumnName="Event_ID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -423,7 +367,9 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="CapstoneModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="AdditionalInfo" ColumnName="AdditionalInfo" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -438,7 +384,6 @@
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="BranchLocation" ColumnName="BranchLocation" />
                 <ScalarProperty Name="Food_ID" ColumnName="Food_ID" />
-                <ScalarProperty Name="AdditionalInfo" ColumnName="AdditionalInfo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -458,7 +403,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

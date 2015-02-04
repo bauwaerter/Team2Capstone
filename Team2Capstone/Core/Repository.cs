@@ -63,6 +63,7 @@ namespace Team2Capstone.Core
         public TEntity Add<TEntity>(TEntity entity) where TEntity : class
         {
             _dbContext.Set<TEntity>().Add(entity);
+            _dbContext.SaveChanges();
             return entity;
         }
 
