@@ -166,7 +166,17 @@ namespace Team2Capstone.Controllers
                     Address1 = model.User.Address1,
                     Address2 = model.User.Address2,
                     City = model.User.City,
-                    State = model.User.State
+                    State = model.User.State,
+                    Zip = model.User.Zip,                    
+                    PhoneHome = model.User.PhoneHome,
+                    PhoneCell = model.User.PhoneCell,
+                    PhoneOffice = model.User.PhoneOffice,
+                    CompanyName = model.User.CompanyName,
+                    BranchLocation = model.User.BranchLocation,
+                    Food_ID = model.User.Food_ID,
+                    AdditionalInfo = model.User.AdditionalInfo
+
+
 
                 };
                 
