@@ -34,5 +34,6 @@ namespace Team2Capstone.Models
         public string EndDate { get; set; }
         public string StartTime { get; set; }
         public string EndTime { get; set; }
+        public string Location { get; set; }
     }
 }

@@ -91,8 +91,11 @@ namespace Team2Capstone.Controllers
                 StartDate = ev.StartDate.ToShortDateString(),
                 EndDate = ev.EndDate.ToShortDateString(),
                 StartTime = ev.StartDate.ToString("h:mm tt"),
-                EndTime = ev.EndDate.ToString("h:mm tt")
+                EndTime = ev.EndDate.ToString("h:mm tt"),
+                Location = ev.Location
             };
+
+            ViewBag.EventType = _typeManager.GetTypeById(ev.Type_ID).Type1;
 
             return View(eventViewModel);
         }
