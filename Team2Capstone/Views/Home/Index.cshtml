@@ -16,20 +16,24 @@
         $('#CreateEvent').click(function () {
             window.location.href = '@Url.Action("Create", "Event")';
         });
-        console.log('@Model')
+
         $('#calendar').fullCalendar({
             eventClick: function (calEvent, jsEvent, view) {
                 window.location.href = "@Url.Action("Details", "Event")?id=" + calEvent.id;
             },
-            events: [{
-                id: '@Model.FirstOrDefault().Id',
-                title: '@Model.FirstOrDefault().Title',
-                start: '@Model.FirstOrDefault().StartDate',
-                end: '@Model.FirstOrDefault().EndDate'
-            }]
         });
-    })
-    
 
+        @foreach (var item in Model.ToList())
+        {
+            @: var event = {
+                @:id:  "@item.Id",
+                @:title: "@item.Title",
+                @:start: "@item.StartDate",
+                @:end: "@item.EndDate"};
+            @:$('#calendar').fullCalendar( 'renderEvent', event );
+
+        }
+    });
+    
 </script>
 
