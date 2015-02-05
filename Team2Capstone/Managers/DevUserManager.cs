@@ -6,6 +6,7 @@ using Team2Capstone.Core;
 using Team2Capstone.Models;
 using Team2Capstone.Data;
 
+
 namespace Team2Capstone.Managers
 {
     public class DevUserManager

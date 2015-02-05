@@ -61,8 +61,13 @@ namespace Team2Capstone.Controllers
         {
             ViewBag.ReturnUrl = returnUrl;
             var foodManager = new DevFoodManager();
-            ViewBag.FoodList = foodManager.GetFoods();
-            return View();
+            var loginModel = new LoginViewModel{
+                RegisterViewModel = new RegisterViewModel{
+                    FoodList = foodManager.GetFoods(),
+                    User = new User()
+                }
+            };
+            return View(loginModel);
         }
 
         //
@@ -91,7 +96,14 @@ namespace Team2Capstone.Controllers
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                    var foodManager = new DevFoodManager();
+                    var loginModel = new LoginViewModel{
+                        RegisterViewModel = new RegisterViewModel{
+                            FoodList = foodManager.GetFoods(),
+                            User = new User()
+                        }
+                    };
+                    return View(loginModel);
             }
         }
 

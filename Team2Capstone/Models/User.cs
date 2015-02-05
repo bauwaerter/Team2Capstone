@@ -22,6 +22,7 @@ namespace Team2Capstone.Models
         [Required]
         public string City { get; set; }
         [Required]
+        [StringLength(2, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 2)]
         public string State { get; set; }
         [Required]
         public int Zip { get; set; } 

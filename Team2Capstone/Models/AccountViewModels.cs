@@ -60,6 +60,8 @@ namespace Team2Capstone.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+        public RegisterViewModel RegisterViewModel { get; set; }
     }
 
     public class RegisterViewModel
@@ -82,6 +84,8 @@ namespace Team2Capstone.Models
         
         [Required]
         public Models.User User { get; set;}
+
+        public List<Food> FoodList { get; set; }
         
     }
 
