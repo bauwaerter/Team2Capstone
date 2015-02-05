@@ -33,7 +33,7 @@
     
     <div class="row">
         <div class="col-md-6">Type</div>
-        <div class="col-md-6">@Html.TextBoxFor(model => model.Type_ID)</div>
+        <div class="col-md-6">@Html.DropDownListFor(m => m.Type_ID, new SelectList(ViewBag.TypeList, "ID", "Type1"), new { @class = "form-control" })</div>
     </div>
     <div class="row">
         <div class="col-md-6">Description</div>
@@ -47,7 +47,7 @@
     
     <div class="row">
         <div class="col-md-6"><button id="CreateEventBtn" type="button" class="btn btn-success">Create Event</button></div>
-        <div class="col-md-6"><button id="BackBtn" type ="button" class="btn-warning">Back</button></div>
+        <div class="col-md-6"><button id="BackBtn" type ="button" class="btn btn-warning">Back</button></div>
     </div>
     
     <script>
@@ -55,11 +55,12 @@
             $('#CreateEventBtn').click(function () {
                 window.location.href = '@Url.Action("Create", "Event")?id=' + '@Model.Id';
             });
-        })
 
-        $(documment).ready(function () {
-            window.location.href = '@Url.Action("Details")/ ' + '@Model.Id';
-        })
+            $('#BackBtn').click(function () {
+                window.location.href = '@Url.Action("Details")?id=' + '@Model.Id';
+            });
+        });
+
     </script>
     
     

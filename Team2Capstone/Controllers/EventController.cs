@@ -20,12 +20,20 @@ namespace Team2Capstone.Controllers
 
         public ActionResult Create()
         {
+            var _typeManager = new DevTypeManager();
+            ViewBag.TypeList = _typeManager.GetTypes();
             return View(new Models.Event());
         }
 
         [HttpPost]
         public ActionResult Create(Models.Event model)
         {
+            var _eventManager = new DevEventManager();
+            var new_event = new Models.Event
+            {
+
+            };
+
             return null;
         }
 
