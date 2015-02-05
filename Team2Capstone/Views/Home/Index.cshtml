@@ -4,30 +4,32 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<br/>
 
-
+<button id="CreateEvent" class="btn btn-success">Create Event</button>
+<br />
+<br />
 <div id="calendar"></div>
 
 <script>
-    console.log('@Model')
-    $('#calendar').fullCalendar({
-        eventClick: function (calEvent, jsEvent, view) {
-            alert('event id: ' + calEvent.id);
-            alert('Event: ' + calEvent.title);
-            alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-            alert('View: ' + view.name);
-            window.location.href = "@Url.Action("Details", "Event")?id=" + calEvent.id;
-        },
-        events: [{
-            id: '@Model.FirstOrDefault().Id',
-            title: '@Model.FirstOrDefault().Title',
-            start: '@Model.FirstOrDefault().StartDate',
-            end: '@Model.FirstOrDefault().EndDate'
+    $(document).ready(function () {
+        $('#CreateEvent').click(function () {
+            window.location.href = '@Url.Action("Create", "Event")';
+        });
+        console.log('@Model')
+        $('#calendar').fullCalendar({
+            eventClick: function (calEvent, jsEvent, view) {
+                window.location.href = "@Url.Action("Details", "Event")?id=" + calEvent.id;
+            },
+            events: [{
+                id: '@Model.FirstOrDefault().Id',
+                title: '@Model.FirstOrDefault().Title',
+                start: '@Model.FirstOrDefault().StartDate',
+                end: '@Model.FirstOrDefault().EndDate'
             }]
-    });
+        });
+    })
+    
+
 </script>
+
