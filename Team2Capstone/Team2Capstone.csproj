@@ -272,6 +272,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\sogeti-bg-world-map.png" />
+    <Content Include="Images\world-map-sogeti-bg.svg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Data\CapstoneEDM.edmx">
@@ -347,6 +349,7 @@
     <Content Include="Views\Event\Create.cshtml" />
     <Content Include="Views\Event\_EventForm.cshtml" />
     <Content Include="Views\Event\Details.cshtml" />
+    <Content Include="Views\Home\Modal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

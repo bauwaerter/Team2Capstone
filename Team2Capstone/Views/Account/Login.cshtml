@@ -3,15 +3,15 @@
 @{
     ViewBag.Title = "Log in";
 }
-
-<h2>@ViewBag.Title.</h2>
-<div class="row">
-    <div class="col-md-8">
+<div class="row" style="padding: 150px;">
+    <div class="col-md-8 col-md-offset-5">
+        <img src="~/Images/sogeti-logo.png" style="width: 30%;"/>
+    </div>
+    <div class="col-md-8 col-md-offset-3">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
@@ -33,27 +33,35 @@
                         <div class="checkbox">
                             @Html.CheckBoxFor(m => m.RememberMe)
                             @Html.LabelFor(m => m.RememberMe)
+                            <span class="forgot-btn" style="padding: .5em">
+                            @Html.ActionLink(" Forgot your password?", "ForgotPassword")
+                            </span>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
+                    <div class="col-md-offset-3 col-md-10">
+                        <input style="margin: .5em;" type="submit" value="Log in" class="btn btn-default" />
+                        
+                        <!-- Button trigger modal -->
+                        <button style="margin: .5em;" type="button" data-toggle="modal" data-target="#registration-modal" class="btn btn-default">Register</button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="registration-modal" tabindex="-1" role="dialog" aria-labelledby="registration-modal" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        @Html.Partial("Register")
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <p>
-                    @Html.ActionLink("Register as a new user", "Register")
-                </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
             }
-        </section>
-    </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
         </section>
     </div>
 </div>
