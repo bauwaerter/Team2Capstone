@@ -35,5 +35,7 @@ namespace Team2Capstone.Models
         public string StartTime { get; set; }
         public string EndTime { get; set; }
         public string Location { get; set; }
+
+        public int CurrentUserId { get; set; }
     }
 }

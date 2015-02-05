@@ -4,56 +4,59 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>    
+<h2>Details</h2>
+@if(Model.Owner.ID == Model.CurrentUserId)
+{
     <div class="row">
         <div class="col-md-6">
             <button id="EditEventBtn" type="button" class="btn btn-success">Edit Event</button>
         </div>
     </div>
-<div class="row">
-    <table class="table">
-    <thead>
-        <tr>
-            <th>Event Name</th>
-            <th>Owner</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Start Time</th>
-            <th>End Time</th>
-            <th>Location</th>
-            <th>Type</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="success">
-            <td>@Html.DisplayFor(model => model.Event.Title)</td>
-            <td>@(Model.Owner.FirstName + " " + Model.Owner.LastName)</td>
-            <td>@Model.StartDate</td>
-            <td>@Model.EndDate</td>
-            <td>@Model.StartTime</td>
-            <td>@Model.EndTime</td>
-            <td>@Model.Location</td>
-            <td>@ViewBag.EventType</td>
-            <td>@Html.DisplayFor(model => model.Event.Description)</td>
-        </tr>
-        <tr class="danger">
-            <td>Mary</td>
-            <td>Moe</td>
-            <td>mary@example.com</td>
-        </tr>
-        <tr class="info">
-            <td>July</td>
-            <td>Dooley</td>
-            <td>july@example.com</td>
-        </tr>
-    </tbody>
-</table>
-</div>
-<script>
-    $(document).ready(function () {
-        $('#EditEventBtn').click(function () {
-            window.location.href = '@Url.Action("Edit", "Event")?id=' + '@Model.Event.Id';
-        });
-    })
-</script>
+}
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Event Name</th>
+                    <th>Owner</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Location</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="success">
+                    <td>@Html.DisplayFor(model => model.Event.Title)</td>
+                    <td>@(Model.Owner.FirstName + " " + Model.Owner.LastName)</td>
+                    <td>@Model.StartDate</td>
+                    <td>@Model.EndDate</td>
+                    <td>@Model.StartTime</td>
+                    <td>@Model.EndTime</td>
+                    <td>@Model.Location</td>
+                    <td>@ViewBag.EventType</td>
+                    <td>@Html.DisplayFor(model => model.Event.Description)</td>
+                </tr>
+                <tr class="danger">
+                    <td>Mary</td>
+                    <td>Moe</td>
+                    <td>mary@example.com</td>
+                </tr>
+                <tr class="info">
+                    <td>July</td>
+                    <td>Dooley</td>
+                    <td>july@example.com</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#EditEventBtn').click(function () {
+                window.location.href = '@Url.Action("Edit", "Event")?id=' + '@Model.Event.Id';
+            });
+        })
+    </script>

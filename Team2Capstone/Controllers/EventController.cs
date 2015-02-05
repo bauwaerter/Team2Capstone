@@ -92,7 +92,8 @@ namespace Team2Capstone.Controllers
                 EndDate = ev.EndDate.ToShortDateString(),
                 StartTime = ev.StartDate.ToString("h:mm tt"),
                 EndTime = ev.EndDate.ToString("h:mm tt"),
-                Location = ev.Location
+                Location = ev.Location,
+                CurrentUserId = _userManager.GetUserById(User.Identity.GetUserId()).ID
             };
 
             ViewBag.EventType = _typeManager.GetTypeById(ev.Type_ID).Type1;
