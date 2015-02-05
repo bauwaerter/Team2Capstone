@@ -5,12 +5,9 @@
 }
 
 <br/>
-
-<button id="CreateEvent" class="btn btn-success">Create Event</button>
 <br />
 <br />
-<div id="calendar"></div>
-
+@Html.Partial("./SideNav")
 <script>
     $(document).ready(function () {
         $('#CreateEvent').click(function () {
@@ -18,6 +15,11 @@
         });
         console.log('@Model')
         $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month, basicWeek, basicDay'
+            },
             eventClick: function (calEvent, jsEvent, view) {
                 window.location.href = "@Url.Action("Details", "Event")?id=" + calEvent.id;
             },

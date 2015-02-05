@@ -350,6 +350,7 @@
     <Content Include="Views\Event\_EventForm.cshtml" />
     <Content Include="Views\Event\Details.cshtml" />
     <Content Include="Views\Home\Modal.cshtml" />
+    <Content Include="Views\Shared\SideNav.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
