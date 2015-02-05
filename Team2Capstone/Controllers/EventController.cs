@@ -44,7 +44,7 @@ namespace Team2Capstone.Controllers
 
             _devEventManager.AddEvent(model);
 
-            return null;
+            return RedirectToAction("Index","Home");
         }
 
         public ActionResult Edit(int id)
