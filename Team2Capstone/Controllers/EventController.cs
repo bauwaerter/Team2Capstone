@@ -20,6 +20,8 @@ namespace Team2Capstone.Controllers
 
         public ActionResult Create()
         {
+            var _typeManager = new DevTypeManager();
+            ViewBag.TypeList = _typeManager.GetTypes();
             return View(new Models.Event());
         }
 
