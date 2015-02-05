@@ -141,6 +141,8 @@ namespace Team2Capstone.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            var foodManager = new DevFoodManager();
+            ViewBag.FoodList = foodManager.GetFoods();
             return View();
         }
 

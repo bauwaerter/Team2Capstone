@@ -82,6 +82,7 @@ namespace Team2Capstone.Models
         
         [Required]
         public Models.User User { get; set;}
+        
     }
 
     public class ResetPasswordViewModel
