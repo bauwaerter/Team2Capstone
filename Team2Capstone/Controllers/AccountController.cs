@@ -60,6 +60,8 @@ namespace Team2Capstone.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+            var foodManager = new DevFoodManager();
+            ViewBag.FoodList = foodManager.GetFoods();
             return View();
         }
 
