@@ -23,6 +23,19 @@ namespace Team2Capstone.Managers
             return _Map(_respository.GetAll<Data.Event>(x => x.ID == eventId).FirstOrDefault());
         }
 
+        public List<Models.Event> GetAllEventsByEventId(List<Models.Registration> regList)
+        {
+            var list = new List<Models.Event>();
+
+            foreach (var reg in regList)
+            {
+                var temp_event = _Map(_respository.GetAll<Data.Event>(x => x.ID == reg.Event_ID).FirstOrDefault());
+                list.Add(temp_event);
+            }
+
+            return list;
+        }
+
         public void UpdateEvent(Models.Event evnt)
         {
             _respository.Update<Data.Event>(_Map(evnt));
@@ -31,6 +44,11 @@ namespace Team2Capstone.Managers
         public void AddEvent(Models.Event evnt)
         {
             _respository.Add<Data.Event>(_Map(evnt));
+        }
+
+        public List<Models.Event> GetEventsByUserId(int userId)
+        {
+            return _Map(_respository.GetAll<Data.Event>(x => x.Owner_ID == userId));
         }
 
         private List<Models.Event> _Map(IEnumerable<Data.Event> source)

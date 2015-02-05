@@ -1,0 +1,52 @@
+﻿@model Team2Capstone.Models.MyEventsViewModel
+@{
+    ViewBag.Title = "MyEvents";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("./SideNav")
+
+<div class="col-sm-10 col-md-10">
+    <h2>MyEvents</h2>
+
+
+    <h2>Own Events</h2>
+
+    <table>
+        <tbody>
+            @foreach (var item in Model.OwnedEvents)
+            {
+                <tr>
+                    <td>
+                        @item.Title
+                    </td>
+                    <td>
+                        @item.StartDate
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+    <br />
+
+    <h2>Registered Events</h2>
+
+    <table>
+        <tbody>
+            @foreach (var item in Model.RegisteredEvents)
+            {
+                <tr>
+                    <td>
+                        @item.Title
+                    </td>
+                    <td>
+                        @item.StartDate
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>

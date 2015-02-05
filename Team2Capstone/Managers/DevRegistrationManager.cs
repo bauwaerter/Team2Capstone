@@ -23,6 +23,11 @@ namespace Team2Capstone.Managers
             return _Map(_respository.GetAll<Data.Registration>(x => x.ID == regestrationId).FirstOrDefault());
         }
 
+        public List<Models.Registration> GetAllRegistrationsByUserId(int userId)
+        {
+            return _Map(_respository.GetAll<Data.Registration>(x => x.User_ID == userId));
+        }
+
         public List<Models.Registration> GetRegistrationsByEventId(int eventId)
         {
             return _Map(_respository.GetAll<Data.Registration>(x => x.Event_ID == eventId).ToList());
