@@ -11,7 +11,7 @@ namespace Team2Capstone.Core
     {
 
         private readonly DbContext _dbContext;
-
+        
         public DbContext Context { get; private set; }
         public Repository(DbContext dbContext)
         {
@@ -108,6 +108,7 @@ namespace Team2Capstone.Core
         {
             _dbContext.SaveChanges();
         }
+
     }
 
 }
