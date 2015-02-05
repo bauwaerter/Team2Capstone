@@ -22,6 +22,10 @@ namespace Team2Capstone.Managers
         {
             return _Map(_respository.GetAll<Data.User>(x => x.User_ID == userId).FirstOrDefault());
         }
+        public Models.User GetUserById(int userId)
+        {
+            return _Map(_respository.GetAll<Data.User>(x => x.ID == userId).FirstOrDefault());
+        }
 
         public void UpdateUser(Models.User user)
         {

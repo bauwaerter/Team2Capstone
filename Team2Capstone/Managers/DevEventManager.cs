@@ -65,7 +65,7 @@ namespace Team2Capstone.Managers
                 Owner_ID = source.Owner_ID,
                 Logo_Path = source.Logo_Path,
                 Location = source.Location,
-                Status = source.Status
+                Status = source.Status,
 
             };
             

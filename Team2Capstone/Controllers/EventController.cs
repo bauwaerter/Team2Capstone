@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Team2Capstone.Managers;
+using Team2Capstone.Models;
 
 namespace Team2Capstone.Controllers
 {
@@ -40,15 +41,35 @@ namespace Team2Capstone.Controllers
         public ActionResult Edit(Models.Event model)
         {
             var _devEventManager = new DevEventManager();
+
             return null;
         }
         //get event details
         public ActionResult Details(int id)
         {
+            var _eventManager = new DevEventManager();
+            var _userManager = new DevUserManager();
+            var _registrationManager = new DevRegistrationManager();
+            var _typeManager = new DevTypeManager();
             
-            var _eventDetail = new DevEventManager();
-            var ev = _eventDetail.GetEventById(id);
-            return View(ev);
+            var ev = _eventManager.GetEventById(id);
+            var owner = _userManager.GetUserById(ev.Owner_ID);
+            var registrations = _registrationManager.GetRegistrationsByEventId(ev.Id);
+            
+            var eventViewModel = new EventViewModel
+            {
+                Event = ev,
+                Owner = owner,
+                Registrations = registrations,
+                StartDate = ev.StartDate.ToShortDateString(),
+                EndDate = ev.EndDate.ToShortDateString(),
+                StartTime = ev.StartDate.ToString("h:mm tt"),
+                EndTime = ev.EndDate.ToString("h:mm tt")
+            };
+
+            return View(eventViewModel);
         }
+        
+
     }
 }

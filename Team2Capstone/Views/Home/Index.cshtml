@@ -21,7 +21,7 @@
             alert('Event: ' + calEvent.title);
             alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
             alert('View: ' + view.name);
-            window.location.href = "@Url.Action("Edit", "Event")?id=" + calEvent.id;
+            window.location.href = "@Url.Action("Details", "Event")?id=" + calEvent.id;
         },
         events: [{
             id: '@Model.FirstOrDefault().Id',
