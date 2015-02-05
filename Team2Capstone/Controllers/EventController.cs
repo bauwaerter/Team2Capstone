@@ -28,6 +28,12 @@ namespace Team2Capstone.Controllers
         [HttpPost]
         public ActionResult Create(Models.Event model)
         {
+            var _eventManager = new DevEventManager();
+            var new_event = new Models.Event
+            {
+
+            };
+
             return null;
         }
 
