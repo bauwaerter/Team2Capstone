@@ -65,6 +65,7 @@ body {
     margin: 0;
     background-image: url('../Images/sogeti-bg-world-map.jpg');
     background-position: top;
+    background-size: cover;
 }
 
 a:focus {
