@@ -8,30 +8,22 @@
         <div class="col-md-6">@Html.TextBoxFor(model => model.Title)</div>
     </div>
     <div class="row">
-        <div class="col-md-6">Event Date</div>
-        <div class="col-md-6">@Html.TextBoxFor(model=>model.StartDate)</div>
+        <div class="col-md-6">Start Date</div>
+        <div class="col-md-6"><input type=date  min=2014-09-08></div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">End Date</div>
+        <div class="col-md-6"><input type = date min=2015-01-01 /></div>
     </div>
     <div class="row">
         <div class="col-md-6">Start Time</div>
-        <div class="col-md-6">
-            <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                    Time Start
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                </ul>
-            </div>
-        </div>
+        <div class="col-md-6"><input type=time min=9:00 max=17:00 step=900></div>
     </div>
 
     <div class="row">
         <div class="col-md-6">End Time</div>
-        <div class="col-md-6"></div>
+        <div class="col-md-6"><input type=time min=9:00 max=17:00 step=900></div>
     </div>
 
     <div class="row">
@@ -54,7 +46,25 @@
     </div>
     
     <div class="row">
-        <div class="col-md-1"><input id="SubmitNewEvent" type="submit" value="Create Event" /></div>
-        <div class="col-md-1"><input id = "Back" type = "submit" value = "Back"/></div>
-        </div>
+        <div class="col-md-6"><button id="CreateEventBtn" type="button" class="btn btn-success">Create Event</button></div>
+        <div class="col-md-6"><button id="BackBtn" type ="button" class="btn-warning">Back</button></div>
+    </div>
+    
+    <script>
+        $(document).ready(function () {
+            $('#CreateEventBtn').click(function () {
+                window.location.href = '@Url.Action("Create", "Event")?id=' + '@Model.Id';
+            });
+        })
+
+        $(documment).ready(function () {
+            window.location.href = '@Url.Action("Details")/ ' + '@Model.Id';
+        })
+    </script>
+    
+    
+
+
+            
+
 }

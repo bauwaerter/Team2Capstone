@@ -1,8 +1,66 @@
-﻿@model Team2Capstone.Models.Event
+﻿@model Team2Capstone.Models.EventViewModel
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Details</h2>
-@Html.Partial("_EventForm")
+
+<div class="row">
+    <div class="col-md-6">Event Name</div>
+    <div class="col-md-6">@Html.DisplayFor(model=>model.Event.Title)</div>
+</div>
+    <div class="row">
+        <div class="col-md-6">Owner</div>
+        <div class="col-md-6">@(Model.Owner.FirstName + " " + Model.Owner.LastName)</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">Start Date</div>
+        <div class="col-md-6">@Model.StartDate</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">End Date</div>
+        <div class="col-md-6">@Model.EndDate</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">Start Time</div>
+        <div class="col-md-6">@Model.StartTime</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">End Time</div>
+        <div class="col-md-6">@Model.EndTime</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">Location</div>
+        <div class="col-md-6">@Html.DisplayFor(model => model.Event.Location)</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">Type</div>
+        <div class="col-md-6">@Html.DisplayFor(model => model.Event.Type_ID)</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">Description</div>
+        <div class="col-md-6">@Html.DisplayFor(model => model.Event.Description)</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">Logo Graphic</div>
+        <div class="col-md-6">@Html.DisplayFor(model => model.Event.Logo_Path, new { type = "file" })</div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <button id="EditEventBtn" type="button" class="btn btn-success">Edit Event</button>
+        </div>
+    </div>
+
+<script>
+    $(document).ready(function () {
+        $('#EditEventBtn').click(function () {
+            window.location.href = '@Url.Action("Edit", "Event")?id=' + '@Model.Event.Id';
+        });
+    })
+</script>

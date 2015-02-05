@@ -65,6 +65,7 @@ body {
     margin: 0;
     background-image: url('../Images/sogeti-bg-world-map.jpg');
     background-position: top;
+    background-size: cover;
 }
 
 a:focus {
@@ -341,14 +342,13 @@ textarea {
 }
 
 a {
-  color: #000;
+  color: #333333;
   text-decoration: none;
 }
 
 a:hover,
 a:focus {
-  color: #2a6496;
-  text-decoration: underline;
+  
 }
 
 a:focus {

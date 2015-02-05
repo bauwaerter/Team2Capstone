@@ -5,7 +5,7 @@
 }
 <div class="row" style="padding: 150px;">
     <div class="col-md-8 col-md-offset-5">
-        <img src="~/Images/sogeti-logo.png" style="width: 40%;"/>
+        <img src="~/Images/sogeti-logo.png" style="width: 30%;"/>
     </div>
     <div class="col-md-8 col-md-offset-3">
         <section id="loginForm">
@@ -33,24 +33,35 @@
                         <div class="checkbox">
                             @Html.CheckBoxFor(m => m.RememberMe)
                             @Html.LabelFor(m => m.RememberMe)
+                            <span class="forgot-btn" style="padding: .5em">
+                            @Html.ActionLink(" Forgot your password?", "ForgotPassword")
+                            </span>
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
+            }
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-10">
+                    <input style="margin: .5em;" type="submit" value="Log in" class="btn btn-default" />
+
+                    <!-- Button trigger modal -->
+                    <button style="margin: .5em;" type="button" data-toggle="modal" data-target="#registration-modal" class="btn btn-default">Register</button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="registration-modal" tabindex="-1" role="dialog" aria-labelledby="registration-modal" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <div class="modal-body">
+                                    @Html.Partial("Register")
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-8 col-md-offset-3">
-                 <p>
-                     <button type="button" value="" class="btn btn-default">@Html.ActionLink("Register as a new user", "Register")</button>
-                </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
-                </div>
-            }
+            </div>
         </section>
     </div>
 </div>
