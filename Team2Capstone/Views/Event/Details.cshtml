@@ -1,8 +1,46 @@
 ﻿@model Team2Capstone.Models.EventViewModel
 @{
-    ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<br />
+<br />
+<br />
+    <div class="jumbotron" style="text-align: center; overflow: hidden;">
+    <h2>Event Details</h2>
+    </div>
+    
+@Html.Partial("./SideNav")
+    <div class="col-sm-10 col-md-10">
+        <div class="well">
+            <button id="EditEventBtn" type="button" class="btn btn-success">Edit Event</button>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Event Name</th>
+                        <th>Owner</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Location</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="success">
+                        <td>@Html.DisplayFor(model => model.Event.Title)</td>
+                        <td>@(Model.Owner.FirstName + " " + Model.Owner.LastName)</td>
+                        <td>@Model.StartDate</td>
+                        <td>@Model.EndDate</td>
+                        <td>@Model.StartTime</td>
+                        <td>@Model.EndTime</td>
+                        <td>@Html.DisplayFor(model => model.Event.Type_ID)</td>
+                        <td></td>
+                        <td>@Html.DisplayFor(model => model.Event.Description)</td>
+                    </tr>
+                </tbody>
+            </table>
 
 <h2>Details</h2>
 @if(Model.Owner.ID == Model.CurrentUserId)
