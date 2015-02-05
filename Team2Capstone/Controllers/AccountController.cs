@@ -172,32 +172,32 @@ namespace Team2Capstone.Controllers
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 var userManager = new DevUserManager();
-                var new_user = new Models.User
-                {
-                    User_ID = user.Id,
-                    UserName = model.Email,
-                    Password = user.PasswordHash,
-                    FirstName = model.User.FirstName,
-                    LastName = model.User.LastName,
-                    Address1 = model.User.Address1,
-                    Address2 = model.User.Address2,
-                    City = model.User.City,
-                    State = model.User.State,
-                    Zip = model.User.Zip,                    
-                    PhoneHome = model.User.PhoneHome,
-                    PhoneCell = model.User.PhoneCell,
-                    PhoneOffice = model.User.PhoneOffice,
-                    CompanyName = model.User.CompanyName,
-                    BranchLocation = model.User.BranchLocation,
-                    Food_ID = model.User.Food_ID,
-                    AdditionalInfo = model.User.AdditionalInfo
-
-
-
-                };
-                
+                                
                 if (result.Succeeded)
                 {
+                    var new_user = new Models.User
+                    {
+                        User_ID = user.Id,
+                        UserName = model.Email,
+                        Password = user.PasswordHash,
+                        FirstName = model.User.FirstName,
+                        LastName = model.User.LastName,
+                        Address1 = model.User.Address1,
+                        Address2 = model.User.Address2,
+                        City = model.User.City,
+                        State = model.User.State,
+                        Zip = model.User.Zip,
+                        PhoneHome = model.User.PhoneHome,
+                        PhoneCell = model.User.PhoneCell,
+                        PhoneOffice = model.User.PhoneOffice,
+                        CompanyName = model.User.CompanyName,
+                        BranchLocation = model.User.BranchLocation,
+                        Food_ID = 1,
+                        AdditionalInfo = model.User.AdditionalInfo
+
+
+
+                    };
                     userManager.AddUser(new_user);
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     

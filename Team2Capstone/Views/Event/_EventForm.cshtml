@@ -3,27 +3,38 @@
 
 @using (Html.BeginForm(null, "Event", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
+    @Html.TextBoxFor(model => model.Id, new { @hidden="hidden"})
     <div class="row">
         <div class="col-md-6">Event Name</div>
         <div class="col-md-6">@Html.TextBoxFor(model => model.Title)</div>
     </div>
     <div class="row">
-        <div class="col-md-6">Start Date</div>
-        <div class="col-md-6"><input type=date  min=2014-09-08></div>
-    </div>
-    
-    <div class="row">
-        <div class="col-md-6">End Date</div>
-        <div class="col-md-6"><input type = date min=2015-01-01 /></div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">Start Time</div>
-        <div class="col-md-6"><input type=time min=9:00 max=17:00 step=900></div>
+        <div class="col-md-6">Start Date and Time</div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control datetime" })
+                    @*<span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>*@
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="row">
-        <div class="col-md-6">End Time</div>
-        <div class="col-md-6"><input type=time min=9:00 max=17:00 step=900></div>
+        <div class="col-md-6"> End Date and Time
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <div class='input-group date' id='datetimepicker2'>
+                @Html.TextBoxFor(model => model.EndDate, new { @class = "form-control datetime" })
+                @*<span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>*@
+            </div>
+        </div>
+    </div>
     </div>
 
     <div class="row">
@@ -46,16 +57,14 @@
     </div>
     
     <div class="row">
-        <div class="col-md-6"><button id="CreateEventBtn" type="button" class="btn btn-success">Create Event</button></div>
-        <div class="col-md-6"><button id="BackBtn" type ="button" class="btn btn-warning">Back</button></div>
+        <div class="col-md-6"><button id="BackBtn" type="button" class="btn btn-danger">Back</button></div>
+        <div class="col-md-6"><button id="SaveBtn" type="submit" class="btn btn-success">Save</button></div>
+        
     </div>
     
     <script>
         $(document).ready(function () {
-            $('#CreateEventBtn').click(function () {
-                window.location.href = '@Url.Action("Create", "Event")?id=' + '@Model.Id';
-            });
-
+            $('.datetime').datetimepicker();
             $('#BackBtn').click(function () {
                 window.location.href = '@Url.Action("Details")?id=' + '@Model.Id';
             });

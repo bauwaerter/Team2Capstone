@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace Team2Capstone.Core
     {
 
         private readonly DbContext _dbContext;
-
+        
         public DbContext Context { get; private set; }
         public Repository(DbContext dbContext)
         {
@@ -67,9 +68,15 @@ namespace Team2Capstone.Core
             {
                 _dbContext.SaveChanges();
             }
-            catch (Exception ex)
+            catch (System.Data.Entity.Validation.DbEntityValidationException e)
             {
-
+                foreach (var validationErrors in e.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        Trace.TraceInformation("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+                    }
+                }
             }
             return entity;
         }
@@ -108,6 +115,7 @@ namespace Team2Capstone.Core
         {
             _dbContext.SaveChanges();
         }
+
     }
 
 }

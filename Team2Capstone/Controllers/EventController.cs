@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Team2Capstone.Managers;
 using Team2Capstone.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Team2Capstone.Controllers
 {
@@ -22,34 +23,52 @@ namespace Team2Capstone.Controllers
         {
             var _typeManager = new DevTypeManager();
             ViewBag.TypeList = _typeManager.GetTypes();
-            return View(new Models.Event());
+            var model = new Models.Event
+            {
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now,
+            };
+            return View(model);
         }
 
         [HttpPost]
         public ActionResult Create(Models.Event model)
         {
-            var _eventManager = new DevEventManager();
-            var new_event = new Models.Event
-            {
+            var ownerId = User.Identity.GetUserId();
+            var _devUserManager = new DevUserManager();
+            var _devEventManager = new DevEventManager();
 
-            };
+            model.Owner_ID = _devUserManager.GetUserById(ownerId).ID;
+            model.Status = "0";
+            model.Logo_Path = "Not implemented";
 
-            return null;
+            _devEventManager.AddEvent(model);
+
+            return RedirectToAction("Index","Home");
         }
 
         public ActionResult Edit(int id)
         {
             var _devEventManager = new DevEventManager();
+            var _devTypeManager = new DevTypeManager();
             var ev = _devEventManager.GetEventById(id);
-            
+            ViewBag.TypeList = _devTypeManager.GetTypes();
             return View(ev);
         }
 
         [HttpPost]
         public ActionResult Edit(Models.Event model)
         {
+            
+            var ownerId = User.Identity.GetUserId();
+            var _devUserManager = new DevUserManager();
             var _devEventManager = new DevEventManager();
 
+            model.Owner_ID = _devUserManager.GetUserById(ownerId).ID;
+            model.Status = "0";
+            model.Logo_Path = "Not implemented";
+            
+            _devEventManager.UpdateEvent(model);
             return null;
         }
         //get event details
@@ -72,8 +91,11 @@ namespace Team2Capstone.Controllers
                 StartDate = ev.StartDate.ToShortDateString(),
                 EndDate = ev.EndDate.ToShortDateString(),
                 StartTime = ev.StartDate.ToString("h:mm tt"),
-                EndTime = ev.EndDate.ToString("h:mm tt")
+                EndTime = ev.EndDate.ToString("h:mm tt"),
+                Location = ev.Location
             };
+
+            ViewBag.EventType = _typeManager.GetTypeById(ev.Type_ID).Type1;
 
             return View(eventViewModel);
         }

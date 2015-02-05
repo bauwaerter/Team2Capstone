@@ -46,7 +46,8 @@ namespace Team2Capstone.Managers
                 Owner_ID = x.Owner_ID,
                 Logo_Path = x.Logo_Path,
                 Location = x.Location,
-                Status = x.Status
+                Status = x.Status,
+                Category_ID = 1
             });
 
             return model.ToList();
@@ -66,7 +67,7 @@ namespace Team2Capstone.Managers
                 Logo_Path = source.Logo_Path,
                 Location = source.Location,
                 Status = source.Status,
-
+                Category_ID = 1,
             };
             
             return model;
@@ -84,7 +85,8 @@ namespace Team2Capstone.Managers
                 Owner_ID = evnt.Owner_ID,
                 Logo_Path = evnt.Logo_Path,
                 Location = evnt.Location,
-                Status = evnt.Status
+                Status = evnt.Status,
+                Category_ID = 1
             };
 
             return data;
