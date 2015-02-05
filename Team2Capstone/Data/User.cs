@@ -35,7 +35,7 @@ namespace Team2Capstone.Data
         public Nullable<long> PhoneOffice { get; set; }
         public string CompanyName { get; set; }
         public string BranchLocation { get; set; }
-        public Nullable<int> Food_ID { get; set; }
+        public int Food_ID { get; set; }
         public string AdditionalInfo { get; set; }
     
         public virtual ICollection<Event> Events { get; set; }

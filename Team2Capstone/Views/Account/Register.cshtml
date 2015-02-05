@@ -104,7 +104,11 @@
     <div class="form-group">
         @Html.Label("Food: ", new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownListFor(m => m.User.Food_ID, new SelectList( Model.FoodList,"ID","Food1"), new { @class = "form-control" })
+            <select class="form-control">
+                <option value="1">Vegan</option>
+                <option value="2">Vegitarian</option>
+                <option value="3">Not Vegetarian</option>
+            </select>
         </div>
     </div>
     <div class="form-group">

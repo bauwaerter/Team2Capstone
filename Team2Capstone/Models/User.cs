@@ -32,8 +32,8 @@ namespace Team2Capstone.Models
         [Required]
         public string CompanyName { get; set; }
         public string BranchLocation { get; set; }
-        [Required]
-        public int? Food_ID { get; set; }
+        
+        public int Food_ID { get; set; }
         public string AdditionalInfo { get; set; }
 
     }
