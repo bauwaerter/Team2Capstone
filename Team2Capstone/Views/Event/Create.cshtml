@@ -9,3 +9,11 @@
 
 
 @Html.Partial("_EventForm")
+
+<script>
+    $(document).ready(function () {
+        $('#BackBtn').click(function () {
+            window.location.href = '@Url.Action("Index", "Home")';
+        });
+    })
+</script>

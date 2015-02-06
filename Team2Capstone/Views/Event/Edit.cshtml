@@ -7,3 +7,15 @@
 <h2>Edit</h2>
 
 @Html.Partial("_EventForm", @Model)
+
+
+
+
+<script>
+    $(document).ready(function () {
+        
+        $('#BackBtn').click(function () {
+            window.location.href = '@Url.Action("Details")?id=' + '@Model.Id';
+        });
+    });
+</script>

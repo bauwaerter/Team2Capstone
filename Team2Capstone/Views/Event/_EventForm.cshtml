@@ -3,7 +3,7 @@
 
 @using (Html.BeginForm(null, "Event", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
-    @Html.TextBoxFor(model => model.Id, new { @hidden="hidden"})
+    @Html.TextBoxFor(model => model.Id, new { @hidden = "hidden" })
     <div class="row">
         <div class="col-md-6">Event Name</div>
         <div class="col-md-6">@Html.TextBoxFor(model => model.Title, new { @class = "form-control" })</div>
@@ -15,33 +15,34 @@
                 <div class='input-group date' id='datetimepicker1'>
                     @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control datetime" })
                     @*<span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>*@
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>*@
                 </div>
             </div>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-6"> End Date and Time
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <div class='input-group date' id='datetimepicker2'>
-                @Html.TextBoxFor(model => model.EndDate, new { @class = "form-control datetime" })
-                @*<span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>*@
+        <div class="col-md-6">
+            End Date and Time
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker2'>
+                    @Html.TextBoxFor(model => model.EndDate, new { @class = "form-control datetime" })
+                    @*<span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>*@
+                </div>
             </div>
         </div>
-    </div>
     </div>
 
     <div class="row">
         <div class="col-md-6">Location</div>
         <div class="col-md-6">@Html.TextBoxFor(model => model.Location, new { @class = "form-control" })</div>
     </div>
-    
+
     <div class="row">
         <div class="col-md-6">Type</div>
         <div class="col-md-6">@Html.DropDownListFor(m => m.Type_ID, new SelectList(ViewBag.TypeList, "ID", "Type1"), new { @class = "form-control" })</div>
@@ -50,31 +51,27 @@
         <div class="col-md-6">Description</div>
         <div class="col-md-6">@Html.TextBoxFor(model => model.Description, new { @class = "form-control" })</div>
     </div>
-    
+
     <div class="row">
         <div class="col-md-6">Logo Graphic</div>
-        <div class="col-md-6">@Html.TextBoxFor(model => model.Logo_Path, new { type = "file", @class="form-control" })</div>
+        <div class="col-md-6">@Html.TextBoxFor(model => model.Logo_Path, new { type = "file", @class = "form-control" })</div>
     </div>
-    
+
     <div class="row">
         <div class="col-md-6"><button id="BackBtn" type="button" class="btn btn-danger">Back</button></div>
-        <div class="col-md-6"><button id="SaveBtn" type="submit" class="btn btn-success">Save</button></div>
         
+
+        <div class="col-md-6"><button id="SaveBtn" type="submit" class="btn btn-success">Save</button></div>
+
     </div>
-    
-    <script>
-        $(document).ready(function () {
-            $('.datetime').datetimepicker();
-            $('#BackBtn').click(function () {
-                window.location.href = '@Url.Action("Details")?id=' + '@Model.Id';
-            });
-        });
 
-    </script>
-    
-    
-
-
-            
 
 }
+
+<script>
+    $(document).ready(function () {
+        $('.datetime').datetimepicker();
+        
+    });
+
+</script>
