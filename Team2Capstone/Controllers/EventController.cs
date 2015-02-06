@@ -100,6 +100,23 @@ namespace Team2Capstone.Controllers
 
             return View(eventViewModel);
         }
+
+        [HttpPost]
+        public ActionResult RegisterForEvent(int id)
+        {
+            var _registrationManager = new DevRegistrationManager();
+            var _userManager = new DevUserManager();
+            var register = new Registration
+            {
+                User_ID = _userManager.GetUserById(User.Identity.GetUserId()).ID,
+                Event_ID = id,
+                Type = "1"
+            };
+
+            _registrationManager.AddRegistration(register);
+
+            return null;
+        }
         
 
     }

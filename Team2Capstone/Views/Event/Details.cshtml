@@ -57,6 +57,7 @@
     <br />
     <div class="row">
         <button id="BackBtnDet" class="btn btn-danger">Back</button>
+        <button id="RegBtn" type="button" class="btn btn-success">Register</button>
     </div>
 </div>
 
@@ -68,6 +69,18 @@
 
         $('#BackBtnDet').click(function () {
             window.location.href = "@Url.Action("Index", "Home")";
+        })
+
+        $('#RegBtn').click(function () {
+            debugger;
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("RegisterForEvent")',
+                data: {id: '@Model.Event.Id'},
+                success: function () {
+                    $('#RegBtn').prop('disabled', true);
+                }
+            });
         })
     })
 </script>
