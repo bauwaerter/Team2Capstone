@@ -216,6 +216,7 @@
     <Compile Include="Models\Food.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MyEventsViewModel.cs" />
     <Compile Include="Models\Registration.cs" />
     <Compile Include="Models\Type.cs" />
     <Compile Include="Models\User.cs" />
@@ -470,6 +471,7 @@
     <Content Include="Views\Home\Modal.cshtml" />
     <Content Include="Views\Shared\SideNav.cshtml" />
     <Content Include="Views\Event\EventUpdate.cshtml" />
+    <Content Include="Views\Event\MyEvents.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
