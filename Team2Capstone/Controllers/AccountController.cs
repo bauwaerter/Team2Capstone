@@ -160,6 +160,8 @@ namespace Team2Capstone.Controllers
             return View();
         }
 
+        //oh my goodness i made a change
+
         //
         // POST: /Account/Register
         [HttpPost]
